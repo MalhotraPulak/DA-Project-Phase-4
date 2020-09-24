@@ -112,10 +112,10 @@ while 1:
             while (1):
                 tmp = sp.call('clear', shell=True)
                 # Here taking example of Employee Mini-world
-                print("1. Get details of all donors")  # Hire an Employee
-                print("2. Generate a report on the current blood inventory")  # Fire an Employee
-                print("3. Option 3")  # Promote Employee
-                print("4. Option 4")  # Employee Statistics
+                print("1. Get details of all donors")
+                print("2. Generate a report on the current blood inventory")
+                print("3. Option 3")
+                print("4. Option 4")
                 print("5. Logout")
                 ch = int(input("Enter choice> "))
                 tmp = sp.call('clear', shell=True)
