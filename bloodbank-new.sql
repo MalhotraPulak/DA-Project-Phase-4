@@ -9,16 +9,6 @@ CREATE TABLE `blood_donation_center` (
   PRIMARY KEY (`center_id`)
 );
 
-LOCK TABLES `DEPARTMENT` WRITE;
-/*!40000 ALTER TABLE `DEPARTMENT` DISABLE KEYS */;
-INSERT INTO `DEPARTMENT` VALUES ('Headquarters',1,'888665555','1981-06-19'),('Administration',4,'987654321','1995-01-01'),('Research',5,'333445555','1988-05-22');
-/*!40000 ALTER TABLE `DEPARTMENT` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-
-
-
 CREATE TABLE `receptionist` (
   `employee_id` varchar(20),
   `center_id` varchar(20) NOT NULL,
@@ -31,7 +21,7 @@ CREATE TABLE `receptionist` (
 );
 
 CREATE TABLE `donor` (
-  `donor_id` varchar(20),
+  `donor_id` varchar(20) ,
   `employee_id` varchar(20) NOT NULL,
   `registration_id` varchar(20) NOT NULL,
   `first_name` varchar(30) NOT NULL,
