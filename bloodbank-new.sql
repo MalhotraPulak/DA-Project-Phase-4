@@ -30,7 +30,7 @@ CREATE TABLE `donor` (
   `phone_number` char(10) NOT NULL,
   `email_id` varchar(50) NOT NULL,
   `date_of_birth` date NOT NULL,
-  `gender` char(1) NOT NULL,
+  `gender` varchar(20) NOT NULL,
   `date_of_registration` date NOT NULL,
   PRIMARY KEY (`donor_id`),
   FOREIGN KEY (`employee_id`) REFERENCES `receptionist` (`employee_id`)
