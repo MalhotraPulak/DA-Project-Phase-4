@@ -206,9 +206,9 @@ WHERE order_id IS NULL AND date_of_storage + INTERVAL max_storage_duration DAY <
 
 
 # INSERTION QUERIES
-INSERT INTO donor (donor_id, employee_id, registration_id, first_name, middle_name, last_name, phone_number, email_id, date_of_birth, gender, date_of_registration) 
+INSERT INTO donor ZZ(donor_id, employee_id, registration_id, first_name, middle_name, last_name, phone_number, email_id, date_of_birth, gender, date_of_registration)
 VALUES (
-    "A1", "123B", "55B", "John", NULL, "Doe", "9980221156", "johndoe@yoyo.com", "1995/06/12", "M", CURDATE()
+    "1", "123", "55", "John", NULL, "Doe", "9980221156", "johndoe@yoyo.com", "1995/06/12", "M", CURDATE()
 );
 
 INSERT INTO blood (blood_barcode, blood_type, description) 
@@ -223,15 +223,15 @@ VALUES (
 
 
 # UPDATE QUERIES
-UPDATE donor SET phone_number = "8890096331" WHERE donor_id = "A1";
-UPDATE donor SET email_id = "johndoe&gmail.com" WHERE donor_id = "A1";
+UPDATE donor SET phone_number = "8890096331" WHERE donor_id = "1";
+UPDATE donor SET email_id = "johndoe&gmail.com" WHERE donor_id = "1";
 
-INSERT INTO donor_address (donor_id, address) VALUES ("A1", "South India");
-DELETE FROM donor_address WHERE donor_id = "A1" AND address = "North India";
+INSERT INTO donor_address (donor_id, address) VALUES ("1", "South India");
+DELETE FROM donor_address WHERE donor_id = "1" AND address = "North India";
 
 
 # DELETE QUERIES
-DELETE FROM donor WHERE donor_id = "A1";
+DELETE FROM donor WHERE donor_id = "1";
 
 DELETE FROM blood_inventory WHERE order_id IS NOT NULL;
 
