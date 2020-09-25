@@ -3,6 +3,9 @@ import pymysql
 import pymysql.cursors
 
 
+def new_alpha_code(tablename, primarykey):
+    QUERY = f'SELECT {primarykey} from {tablename}'
+
 def option2():
     """
     Function to implement option 1
@@ -24,55 +27,40 @@ def option4():
     print("Not implemented")
 
 
-def hireAnEmployee():
-    """
-    This is a sample function implemented for the refrence.
-    This example is related to the Employee Database.
-    In addition to taking input, you are required to handle domain errors as well
-    For example: the SSN should be only 9 characters long
-    Sex should be only M or F
-    If you choose to take Super_SSN, you need to make sure the foreign key constraint is satisfied
-    HINT: Instead of handling all these errors yourself, you can make use of except clause to print the error returned to you by MySQL
-    """
-    try:
-        # Takes emplyee details as input
-        row = {}
-        print("Enter new employee's details: ")
-        name = (input("Name (Fname Minit Lname): ")).split(' ')
-        row["Fname"] = name[0]
-        row["Minit"] = name[1]
-        row["Lname"] = name[2]
-        row["Ssn"] = input("SSN: ")
-        row["Bdate"] = input("Birth Date (YYYY-MM-DD): ")
-        row["Address"] = input("Address: ")
-        row["Sex"] = input("Sex: ")
-        row["Salary"] = float(input("Salary: "))
-        row["Dno"] = int(input("Dno: "))
-
-        query = "INSERT INTO EMPLOYEE(Fname, Minit, Lname, Ssn, Bdate, Address, Sex, Salary, Dno) VALUES('%s', '%c', '%s', '%s', '%s', '%s', '%c', %f, %d)" % (
-            row["Fname"], row["Minit"], row["Lname"], row["Ssn"], row["Bdate"], row["Address"], row["Sex"], row["Salary"], row["Dno"])
-
-        print(query)
-        cur.execute(query)
-        con.commit()
-
-        print("Inserted Into Database")
-
-    except Exception as e:
-        con.rollback()
-        print("Failed to insert into database")
-        print(">>>>>>>>>>>>>", e)
+def add_a_donor():
+    print("first query godddam")
+    # try:
+    #     row = {}
+    #     print("Enter new donor's details: ")
+    #     name = (input("Name (Fname Minit Lname): ")).split(' ')
+    #     row["Fname"] = name[0]
+    #     row["Minit"] = name[1]
+    #     row["Lname"] = name[2]
+    #     row["Emplyoyee ID"] = input("Employee ID: ")
+    #     row["Bdate"] = input("Birth Date (YYYY-MM-DD): ")
+    #     row["Address"] = input("Address: ")
+    #     row["Sex"] = input("Sex: ")
+    #     row["Salary"] = float(input("Salary: "))
+    #     row["Dno"] = int(input("Dno: "))
+    #
+    #
+    #     print(query)
+    #     cur.execute(query)
+    #     con.commit()
+    #
+    #     print("Inserted Into Database")
+    #
+    # except Exception as e:
+    #     con.rollback()
+    #     print("Failed to insert into database")
+    #     print(">>>>>>>>>>>>>", e)
 
     return
 
 
 def dispatch(ch):
-    """
-    Function that maps helper functions to option entered
-    """
-
     if ch == 1:
-        hireAnEmployee()
+        add_a_donor()
     elif ch == 2:
         option2()
     elif ch == 3:
@@ -82,51 +70,64 @@ def dispatch(ch):
     else:
         print("Error: Invalid Option")
 
-
-while 1:
-    tmp = sp.call('clear', shell=True)
+username = "roott"
+password = "pulak1234"
+def ask_username_pass():
     # Can be skipped if you want to hard core username and password
     # username = input("Username: ")
     # password = input("Password: ")
-    username = "root"
-    password = "pulak1234"
+    pass
+
+def connect_to_database():
+    global db, cursor
+    sp.call('clear', shell=True)
+
 
     try:
-        # Set db name accordingly which have been create by you
-        # Set host to the server's address if you don't want to use local SQL server
-        con = pymysql.connect(host='localhost',
+        db = pymysql.connect(host='localhost',
                               user=username,
                               password=password,
                               db='BLOODBANK',
                               cursorclass=pymysql.cursors.DictCursor)
-        tmp = sp.call('clear', shell=True)
-
-        if (con.open):
-            print("Connected")
-        else:
-            print("Failed to connect")
-
-        tmp = input("Enter any key to CONTINUE>")
-
-        with con.cursor() as cur:
-            while (1):
-                tmp = sp.call('clear', shell=True)
-                # Here taking example of Employee Mini-world
-                print("1. Get details of all donors")
-                print("2. Generate a report on the current blood inventory")
-                print("3. Option 3")
-                print("4. Option 4")
-                print("5. Logout")
-                ch = int(input("Enter choice> "))
-                tmp = sp.call('clear', shell=True)
-                if ch == 5:
-                    break
-                else:
-                    dispatch(ch)
-                    tmp = input("Enter any key to CONTINUE>")
-
+        sp.call('clear', shell=True)
     except:
-        tmp = sp.call('clear', shell=True)
+        sp.call('clear', shell=True)
         print("Connection Refused: Either username or password is incorrect or user doesn't have access to database")
-        tmp = input("Enter any key to CONTINUE>")
+        tmp = input("Enter Q to quit, any other key to continue")
+        if tmp == 'Q':
+            return
+        connect_to_database()
+    if db.open:
+        print("Connected")
+    else:
+        print("Failed to connect")
+
+
+def loop():
+    while True:
+        tmp = sp.call('clear', shell=True)
+        # Here taking example of Employee Mini-world
+        print("1. Get details of all donors")
+        print("2. Generate a report on the current blood inventory")
+        print("3. Option 3")
+        print("4. Option 4")
+        print("5. Logout")
+        ch = int(input("Enter choice> "))
+        tmp = sp.call('clear', shell=True)
+        if ch == 5:
+            break
+        else:
+            dispatch(ch)
+            tmp = input("Enter any key to CONTINUE>")
+
+
+
+db = None
+connect_to_database()
+if db is None:
+    exit(1)
+cursor = db.cursor()
+loop()
+
+
 

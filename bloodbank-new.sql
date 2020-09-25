@@ -1,6 +1,3 @@
-DROP DATABASE IF EXISTS `BLOODBANK`;
-CREATE SCHEMA `BLOODBANK`;
-USE `BLOODBANK`;
 
 CREATE TABLE `blood_donation_center` (
   `center_id` varchar(20),
