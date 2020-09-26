@@ -8,7 +8,7 @@ def new_alpha_code(tablename, primarykey):
     cursor.execute(sql)
     results = cursor.fetchall()
     used = [0]
-    print(used)
+    print(used)#
     for row in results:
         used.append(int(row[0]))
     return str(max(used) + 1)
