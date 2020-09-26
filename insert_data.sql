@@ -206,7 +206,7 @@ WHERE order_id IS NULL AND date_of_storage + INTERVAL max_storage_duration DAY <
 
 
 # INSERTION QUERIES
-INSERT INTO donor ZZ(donor_id, employee_id, registration_id, first_name, middle_name, last_name, phone_number, email_id, date_of_birth, gender, date_of_registration)
+INSERT INTO donor (donor_id, employee_id, registration_id, first_name, middle_name, last_name, phone_number, email_id, date_of_birth, gender, date_of_registration)
 VALUES (
     "1", "123", "55", "John", NULL, "Doe", "9980221156", "johndoe@yoyo.com", "1995/06/12", "M", CURDATE()
 );
