@@ -35,7 +35,7 @@ source bloodbank.sql
 7.  Run 
 ```
 python3 bloodbank.py
-``` from the same directory as this README
+``` from the same directory as this README ```
 8. It will prompt you for username and password once again. On entering that it will show you the available queries.
 
 
