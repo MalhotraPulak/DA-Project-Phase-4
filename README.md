@@ -12,14 +12,14 @@
 
 
 
-####Prerequisites
+#### Prerequisites
 1. Python3 installed on the system, ```python3``` or ```python``` from terminal should invoke the python3 interpreter
 2. MySQL server and CLI installed. ```mysql``` from terminal should point to the mysql CLI binary
 3. Access to mysql account which has permission to create and use a database
 4. To download pymsql, prettytable package run the following command
 ```pip3 install prettytable pymysql``` or ```pip install prettytable pymysql```
 
-####How to Run
+#### How to Run
 1. Start MySQL server on your machine, for ubuntu this is ```sudo /etc/init.d/mysql start```
 2. Make sure you know the credentials of an account which has privilege to create a new database and access it and also Prettytable and PyMySQL package is installed in the currently active python environment
 3. Change into the directory in which this README.md is present
